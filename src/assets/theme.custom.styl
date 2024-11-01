@@ -1,0 +1,96 @@
+@import '~mand-mobile/components/_style/mixin/util'
+@import '~mand-mobile/components/_style/mixin/theme.components'
+@import '~mand-mobile/components/_style/mixin/theme.basic'
+
+///px2px
+fontPx($size)
+    font-size unit($size, PX)
+    [data-dpr='2'] &
+        font-size unit($size*2, PX)
+    [data-dpr='3'] &
+        font-size unit($size*3, PX)
+
+/// Text Size
+font-heading-large  = 38px
+font-heading-medium = 36px
+font-heading-normal = 34px
+font-caption-large  = 36px
+font-caption-normal = 34px
+font-body-large     = 28px
+font-body-normal    = 26px
+font-minor-large    = 24px
+font-minor-normal   = 22px
+
+/// Border & Background Color
+color-border-base       = #eee // 条目边框
+
+/// Spacing size
+h-gap-xs = 8px
+h-gap-sm = 12px
+h-gap-md = 20px
+h-gap-lg = 30px
+h-gap-sl = 40px
+
+v-gap-xs = 8px
+v-gap-sm = 12px
+v-gap-md = 20px
+v-gap-lg = 30px
+v-gap-sl = 40px
+
+/// base-color
+button-color-primary = #0195ff
+color-bg-disabled = #DBDBDB
+color-border-element = transparent;
+color-text-base = #13252E;
+color-text-body = #333;
+color-text-disabled = #888;
+
+/// radius
+radius-normal = 8px
+
+/// button
+button-default-fill = button-color-primary
+button-default-active-fill = button-color-primary
+button-default-plain-active-fill = transparent
+button-default-color = #FFF
+button-default-plain-color = color-primary
+button-disabled-plain-color = color-text-disabled
+button-height = 90px
+button-font-size = 32px
+button-radius = 8px
+
+/// field
+field-padding-h = h-gap-lg
+field-padding-v = 0
+field-item-color = color-text-body
+field-item-addon-color = #666
+field-item-font-size = 34px
+field-item-addon-font-size = 34px
+field-item-title-width = auto
+field-item-title-gap = 20px
+field-title-font-weight-android = normal
+input-item-font-weight-android = normal
+
+/// picker
+picker-padding-h = h-gap-md
+picker-color-active = color-primary
+
+/// popUp
+popup-title-bar-font-size-title = 32px
+popup-title-bar-color-button-right = color-primary
+
+/// tabs
+tab-bg = #ffffff
+tab-ink-height = 6px
+
+/// tag
+tag-color = #e92424
+tag-fillet-radius = 8px
+
+/// input-item
+input-item-font-size = 34px
+input-item-color = #333
+input-item-placeholder = #ccc
+
+/// textarea-item
+textarea-item-font-size = font-caption-normal

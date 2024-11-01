@@ -1,0 +1,35 @@
+pipeline  {
+    agent any
+
+    environment {
+        TARGETHOST = '172.18.107.2'
+        APP_USER = 'nginx'
+        APP_DEPLOY_DIR = '/app/nginx/front-msa/fintech-h5/'
+    }
+
+    options {
+        ansiColor('xterm')
+    }
+
+    stages {
+        stage('Install') {
+            steps {
+                nodejs(nodeJSInstallationName: 'NodeJS 8.11.2') {
+                    sh '''node -v
+                    npm -v
+                    npm i'''
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                nodejs(nodeJSInstallationName: 'NodeJS 8.11.2') {
+                    sh '''npm run build:sit
+                    rm -rf wallet
+                    mv dist wallet
+                    scp -r wallet ${APP_USER}@${TARGETHOST}:${APP_DEPLOY_DIR}'''
+                }
+            }
+        }
+    }
+}

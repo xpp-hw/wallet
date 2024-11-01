@@ -1,0 +1,86 @@
+<!--
+ * @Author: 赵宏峰 zhao_hf@hisuntech.com
+ * @Date: 2022-11-18 08:57:12
+ * @LastEditors: 赵宏峰 zhao_hf@hisuntech.com
+ * @LastEditTime: 2024-10-17 17:16:48
+ * @FilePath: \wallet\template\index.dev.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="full-screen" content="yes" />
+    <meta name="screen-orientation" content="portrait" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="x5-orientation" content="portrait" />
+    <meta name="360-fullscreen" content="true" />
+    <meta name="x5-page-mode" content="app" />
+    <meta name="browsermode" content="application" />
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="msapplication-tap-highlight" content="no" />
+    <title></title>
+    <!-- <script>
+      window.__SKYNET = {
+        appName: "jswap",
+        appVersion: "", //系统版本号
+        xhrStatusFilter: [], 
+        usePathKey: false,
+        dev: false,
+        rate: '100', // 上报采样，取值范围0-100
+        getUID: "",
+        sendError: true,
+        uploadResTime: true,
+        uploadAPITime: true,
+        webView: 0, // 创建webview时间戳
+        noSendDevice: false,
+        api: "https://wap.js.10086.cn/bigdata/v3/cmcc_cmos"
+      }
+    </script> -->
+    <meta content="always" name="referrer">
+    <script src="<%=BASE_URL%>static/scripts/skynet-1.4.js"></script>
+    <script src="https://res.app.coc.10086.cn/appother/js/public/cmcc-v1.0.1.js"></script>
+    <script src="<%=BASE_URL%>static/scripts/fixScreen.js"></script>
+    <script src="<%=BASE_URL%>static/scripts/CMCC2023.js"></script>
+    <script src="<%=BASE_URL%>static/scripts/vconsole.min.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+    <script src="<%= BASE_URL %>lib/vue/vue.min.js" charset="utf-8"></script>
+    <script src="<%= BASE_URL %>lib/vuex/vuex.min.js" charset="utf-8"></script>
+    <script src="<%= BASE_URL %>lib/vue-router/vue-router.min.js" charset="utf-8"></script>
+    <script src="<%= BASE_URL %>lib/axios/axios.min.js" charset="utf-8"></script>
+    <script>var vConsole = new VConsole();</script>
+</head>
+
+<body>
+  <div id="app"></div>
+    <!-- built files will be auto injected -->
+    <%=htmlWebpackPlugin.files.webpackManifest%>
+
+
+        <script>
+            //var  = document.documentElement.clientWidth
+            (function (w) {
+                var r = document.documentElement, t,
+                    f = function () {
+                        var c = r.clientWidth;
+                        //if(clientWidth__>0 && c==clientWidth__) return;
+                        //clientWidth__ = c;
+                        r.style.fontSize = (c > w ? w : c < 320 ? 320 : c) / w * 100 + "px";
+                    }, s = function () {
+                        clearTimeout(t); t = setTimeout(f, 100)
+                    }; window.addEventListener("resize", s); f()
+            })(750)
+
+            function ztLoginCallBack() {
+                window.location.reload(true)
+            }
+        </script>
+</body>
+
+</html>

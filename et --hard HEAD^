@@ -1,0 +1,279 @@
+[33mcommit 4f4738b3e3c63bbedc1c05b6e981b6a3aed7d2f0[m[33m ([m[1;36mHEAD -> [m[1;32mrelease/sit[m[33m, [m[1;31morigin/release/sit[m[33m)[m
+Author: cuizihan <19139325969@163.com>
+Date:   Mon Aug 30 17:26:56 2021 +0800
+
+    8.30提交 强制阅读
+
+[33mcommit ebdd01f07add884d3e6d929fa2dbd46eb5eb20f9[m
+Author: xiaoliulove <xiaoliulovewater@163.com>
+Date:   Mon Aug 30 15:47:32 2021 +0800
+
+    放开登录鉴权
+
+[33mcommit a5b53db815bda63de1d74c565306988faee04fa8[m
+Merge: aa8b357 ad99dcf
+Author: xiaoliulove <xiaoliulovewater@163.com>
+Date:   Mon Aug 30 15:45:21 2021 +0800
+
+    钱包多账户
+
+[33mcommit aa8b357371b0dcc9386a8819bd6b2942d726bce4[m
+Merge: 61753a7 c02f831
+Author: xiaoliulove <xiaoliulovewater@163.com>
+Date:   Mon Aug 30 15:36:32 2021 +0800
+
+    钱包多账户
+
+[33mcommit ad99dcf0a5d15a5473f485a753141b4623813cac[m
+Merge: b3098b4 d5e037c
+Author: cuizihan <19139325969@163.com>
+Date:   Mon Aug 30 15:29:43 2021 +0800
+
+    Merge branch 'release/sit' of http://183.207.110.250:60009/fintech/frontend/wallet into release/sit
+
+[33mcommit d5e037c80ddb0b52a0c77aaf4827c7a25952ed80[m
+Author: gumeihong <920484151@qq.com>
+Date:   Mon Aug 30 15:18:21 2021 +0800
+
+    跳转广电猫测试
+
+[33mcommit b3098b44b23372ccc6223ac289e4f85ef24b447b[m
+Author: cuizihan <19139325969@163.com>
+Date:   Mon Aug 30 15:04:27 2021 +0800
+
+    8.30提交 强制阅读
+
+[33mcommit 528bf1a225dd5c8456afa592995f7fe34319475d[m
+Author: gumeihong <920484151@qq.com>
+Date:   Mon Aug 30 15:03:34 2021 +0800
+
+    跳转授权页测试
+
+[33mcommit 61753a7d6aa1471e5240db71ed46e40134484c8e[m
+Author: xiaoliulove <xiaoliulovewater@163.com>
+Date:   Mon Aug 30 13:33:11 2021 +0800
+
+    多账户页面以及接口
+
+[33mcommit c02f8311ad3c85539db3902467d9ae66a528b435[m
+Author: cuizihan <19139325969@163.com>
+Date:   Mon Aug 30 09:20:51 2021 +0800
+
+    8.30提交 强制阅读
+
+[33mcommit b88d19fe4aa120d7b61fc3187e469e628ac361ab[m
+Author: cuizihan <19139325969@163.com>
+Date:   Fri Aug 27 10:47:35 2021 +0800
+
+    8.27提交 强制阅读
+
+[33mcommit 447ee59ca00aac49a68e3dacbd1264d6fbd26991[m
+Merge: aa6b187 a923fc7
+Author: cuizihan <19139325969@163.com>
+Date:   Fri Aug 27 10:32:59 2021 +0800
+
+    8.27提交 强制阅读
+
+[33mcommit aa6b187e9b500a1ec861f9385cb0b2284952e4e6[m
+Author: cuizihan <19139325969@163.com>
+Date:   Fri Aug 27 10:09:07 2021 +0800
+
+    8.27提交 强制阅读
+
+[33mcommit a923fc7559ae8b7f26ceb133a264be79c63bd66e[m
+Author: gumeihong <920484151@qq.com>
+Date:   Wed Aug 25 22:17:31 2021 +0800
+
+    0825上线更改
+
+[33mcommit 0588e258e9d985ba600234f8bc0bc251ab6dacef[m
+Merge: bed5ce1 1d9ce2a
+Author: gumeihong <920484151@qq.com>
+Date:   Wed Aug 25 16:23:18 2021 +0800
+
+    页面优化
+
+[33mcommit 1d9ce2a8eb7d07b2d093cf9c6cf2ab6691f6227d[m[33m ([m[1;33mtag: v1.5.6[m[33m, [m[1;31morigin/pre[m[33m)[m
+Author: gumeihong <920484151@qq.com>
+Date:   Wed Aug 25 15:36:22 2021 +0800
+
+    页面优化
+
+[33mcommit 1b824bcae5b02d803ad623be02c24594cc515128[m
+Author: cuizihan <19139325969@163.com>
+Date:   Sun Aug 22 11:03:02 2021 +0800
+
+    8.22提交
+
+[33mcommit bed5ce1a12a9e617494913d81ff34b8160fe8939[m
+Author: cuizihan <19139325969@163.com>
+Date:   Fri Aug 20 17:01:12 2021 +0800
+
+    新增页面
+
+[33mcommit ab70c6e8cbb3219885b53eeaebd855dc0227dd1f[m[33m ([m[1;33mtag: v1.5.5[m[33m)[m
+Author: gumeihong <920484151@qq.com>
+Date:   Thu Aug 19 00:01:44 2021 +0800
+
+    页面logo文字样式修改
+
+[33mcommit 240cc7df3f28e54e531c53ba8e0b75334332107f[m[33m ([m[1;33mtag: v1.5.4[m[33m)[m
+Author: gumeihong <920484151@qq.com>
+Date:   Wed Aug 18 23:29:06 2021 +0800
+
+    页面样式修改
+
+[33mcommit 6bea1a88630a0df8f6beb32261fe76505450ed41[m[33m ([m[1;33mtag: v1.5.3[m[33m)[m
+Author: gumeihong <920484151@qq.com>
+Date:   Tue Aug 17 11:56:56 2021 +0800
+
+    零钱转账文案修改
+
+[33mcommit 7576c9a0294aa45e3064e33a3abc7e479d3e6dd5[m
+Author: gumeihong <920484151@qq.com>
+Date:   Mon Aug 16 16:32:44 2021 +0800
+
+    首页样式微调
+
+[33mcommit 5f674edc547e210e3c1bf185d8e726f21952d4c5[m
+Author: gumeihong <920484151@qq.com>
+Date:   Mon Aug 16 16:26:45 2021 +0800
+
+    首页图标更改
+
+[33mcommit 3910a5d6f96a74295a519daac0c37d8f838cc63b[m
+Author: gumeihong <920484151@qq.com>
+Date:   Mon Aug 16 16:10:53 2021 +0800
+
+    首页样式微调
+
+[33mcommit b4216ef5231f038860e833424cc8973c36d9e5fc[m
+Author: gumeihong <920484151@qq.com>
+Date:   Mon Aug 16 16:06:14 2021 +0800
+
+    图标更改
+
+[33mcommit b46d81aa3da2ab482f3940ca808be5edadc01f35[m
+Author: gumeihong <920484151@qq.com>
+Date:   Mon Aug 16 15:41:54 2021 +0800
+
+    首页图标样式修改
+
+[33mcommit bd3fb41d60945871ff5c5539912d1de2fa31241d[m
+Author: gumeihong <920484151@qq.com>
+Date:   Mon Aug 16 14:26:12 2021 +0800
+
+    钱包首页，充值页等优化
+
+[33mcommit d173db7d6bc6a438e28ac824d1dbc8f696b89558[m[33m ([m[1;33mtag: v1.5.2[m[33m)[m
+Author: gumeihong <920484151@qq.com>
+Date:   Wed Aug 11 21:12:26 2021 +0800
+
+    首页专属福利模块宽度修改
+
+[33mcommit c02306aa5a10a24933c1a83b72dd7d8e740f16f9[m
+Author: gumeihong <920484151@qq.com>
+Date:   Wed Aug 11 15:52:07 2021 +0800
+
+    首页优化
+
+[33mcommit ec76870e42500ed00b7f313aee627ae677ee2562[m
+Author: gumeihong <920484151@qq.com>
+Date:   Wed Aug 11 11:13:29 2021 +0800
+
+    常见问题修改
+
+[33mcommit bf52639a19cdeb98891288d0076199c823bacc22[m
+Author: gumeihong <920484151@qq.com>
+Date:   Wed Aug 11 11:01:20 2021 +0800
+
+    常见问题立即解约更改
+
+[33mcommit edf0698883df890c3ad14404dfbe20bb3af92aa8[m
+Author: gumeihong <920484151@qq.com>
+Date:   Wed Aug 11 10:47:39 2021 +0800
+
+    首页头部背景图片修改
+
+[33mcommit 639b773039aec0404037b777084acf9b73867616[m
+Author: gumeihong <920484151@qq.com>
+Date:   Wed Aug 11 10:38:10 2021 +0800
+
+    首页优化
+
+[33mcommit aabc615f3a585fbb399484352472b866fc65fc70[m
+Merge: 564a405 53d9fcf
+Author: gumeihong <920484151@qq.com>
+Date:   Tue Aug 10 17:30:09 2021 +0800
+
+    Merge branch 'pre' into release/sit
+
+[33mcommit 53d9fcf4dd4bb7677adf177127774d2bcd99df34[m
+Author: gumeihong <920484151@qq.com>
+Date:   Tue Aug 10 17:26:51 2021 +0800
+
+    首页样式更改及cookie存入手机号
+
+[33mcommit cfd7ba060763f68115e3fb7006ab3070e0ef3982[m[33m ([m[1;33mtag: v1.5.1[m[33m)[m
+Merge: d77e1ac c73dc95
+Author: gumeihong <920484151@qq.com>
+Date:   Thu Aug 5 02:59:20 2021 +0800
+
+    Merge branch 'pre' of http://183.207.110.250:60009/fintech/frontend/wallet into pre
+
+[33mcommit d77e1ac0e0b3a91a33c96d96b603da1c38898a06[m
+Author: gumeihong <920484151@qq.com>
+Date:   Thu Aug 5 02:57:31 2021 +0800
+
+    回调地址参数修改
+
+[33mcommit 564a40570a3df052b7e9135351d69fe5b98bc094[m
+Author: shimingqin <120957533@qq.com>
+Date:   Thu Aug 5 02:54:22 2021 +0800
+
+    修复store bug
+
+[33mcommit c73dc95618bc782b10bfeffa5307ccbb37bc652a[m[33m ([m[1;33mtag: v1.5.0[m[33m)[m
+Author: shimingqin <120957533@qq.com>
+Date:   Thu Aug 5 02:52:04 2021 +0800
+
+    修复样式检测bug
+
+[33mcommit 7426a23bdfa443aa9b4b37c66fff38dacc38f482[m[33m ([m[1;33mtag: v1.4.9[m[33m)[m
+Merge: 47d3c79 288f4cd
+Author: shimingqin <120957533@qq.com>
+Date:   Thu Aug 5 02:39:51 2021 +0800
+
+    Merge remote-tracking branch 'origin/release/sit' into pre
+
+[33mcommit 288f4cd81bea12eeb6a0d613fbd7b3fe25eba6b2[m
+Author: shimingqin <120957533@qq.com>
+Date:   Thu Aug 5 02:39:34 2021 +0800
+
+    修复store bug
+
+[33mcommit 339dcd659148741e3121ef93d4442916c9cc187d[m
+Author: shimingqin <120957533@qq.com>
+Date:   Thu Aug 5 02:08:48 2021 +0800
+
+    修复store bug
+
+[33mcommit 47d3c7986113db9cfa704fafe4162625f295723d[m[33m ([m[1;33mtag: v1.4.8[m[33m)[m
+Author: shimingqin <120957533@qq.com>
+Date:   Thu Aug 5 02:01:32 2021 +0800
+
+    修复store bug
+
+[33mcommit 93cb2ac5f49ae09e765abcb93eb42316c0e37924[m[33m ([m[1;33mtag: v1.4.7[m[33m)[m
+Author: shimingqin <120957533@qq.com>
+Date:   Thu Aug 5 01:42:26 2021 +0800
+
+    修复store bug
+
+[33mcommit cc74726a49ddfbb49770f8acc589503cb8b458d5[m[33m ([m[1;33mtag: v1.4.6[m[33m)[m
+Author: gumeihong <920484151@qq.com>
+Date:   Wed Aug 4 21:51:00 2021 +0800
+
+    开户页面写死数据去掉
+
+[33mcommit 3fa0e
