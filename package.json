@@ -52,7 +52,6 @@
     "babel-eslint": "8.2.2",
     "babel-jest": "^27.0.5",
     "babel-plugin-import": "1.8.0",
-    "compression-webpack-plugin": "^6.1.1",
     "del": "3.0.0",
     "eslint": "5.16.0",
     "eslint-plugin-vue": "5.0.0",

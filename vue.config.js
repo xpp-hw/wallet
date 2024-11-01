@@ -1,9 +1,6 @@
 /* eslint-disable no-shadow */
 const webpack = require("webpack");
 const path = require("path");
-const poststylus = require("poststylus");
-const pxtorem = require("postcss-pxtorem");
-const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const resolve = (file) => path.resolve(__dirname, file);
 const TerserPlugin = require('terser-webpack-plugin');
 
@@ -234,7 +231,6 @@ module.exports = {
     css: {
         loaderOptions: {
             stylus: {
-                
                 import: [resolve("./src/assets/theme.custom")],
             },
         },
