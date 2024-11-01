@@ -2085,394 +2085,397 @@ function setDistributionCode(to) {
     }
 }
 
-router.beforeEach(async (to, from, next) => {
-    // 全局活动下线，已下线无需登录
-    const pagedownlineStatus = 0;
-    // if (pagedownlineStatus === '1') {
-    //     to.meta.title = '温馨提示';
-    //     next();
-    //     return;
-    // }
+// router.beforeEach(async (to, from, next) => {
+//     // 全局活动下线，已下线无需登录
+//     const pagedownlineStatus = 0;
+//     // if (pagedownlineStatus === '1') {
+//     //     to.meta.title = '温馨提示';
+//     //     next();
+//     //     return;
+//     // }
 
-    store2.default.set('toPath', to.path);
-    store2.default.set('isRequiresAuth', to.meta.requiresAuth);
-    // 地址拼接typeId
-    const beforeUrl = store2.default.set('locationHref');
-    const isGo = to.name !== 'walletCardcenter' && to.name !== 'index';
-    // 优+ iframe登录优化
-    if (to.name === 'uAdd') {
-        window.sessionStorage.setItem('isuAdd', 'uAdd');
-    }
-    const isuAddFlag = !!window.sessionStorage.getItem('isuAdd');
+//     store2.default.set('toPath', to.path);
+//     store2.default.set('isRequiresAuth', to.meta.requiresAuth);
+//     // 地址拼接typeId
+//     const beforeUrl = store2.default.set('locationHref');
+//     const isGo = to.name !== 'walletCardcenter' && to.name !== 'index';
+//     // 优+ iframe登录优化
+//     if (to.name === 'uAdd') {
+//         window.sessionStorage.setItem('isuAdd', 'uAdd');
+//     }
+//     const isuAddFlag = !!window.sessionStorage.getItem('isuAdd');
 
-    if (from.query.gytype && from.query.parchn) {
-        if (!to.query.gytype) {
-            to.query.gytype = from.query.gytype;
-        }
-        if (!to.query.parchn) {
-            to.query.parchn = from.query.parchn;
-        }
-    }
-    if (from.query.dealChn && !to.query.dealChn) {
-        router.push({
-            path: to.path,
-            query: {
-                ...to.query,
-                dealChn: from.query.dealChn
-            }
-        });
-    }
-    if (
-        beforeUrl
-      && beforeUrl.indexOf('typeId') > -1
-      && !from.query.typeId
-      && !to.query.typeId
-      && isGo
-    ) {
-        const reg = beforeUrl.split('?')[1].split('&');
-        reg.forEach((item) => {
-            if (item.indexOf('typeId=') > -1) {
-                router.push({
-                    path: to.path,
-                    query: {
-                        ...to.query,
-                        typeId: item.split('=')[1]
-                    }
-                });
-            }
-        });
-    }
-    if (from.query.typeId && !to.query.typeId && isGo) {
-        router.push({
-            path: to.path,
-            query: {
-                ...to.query,
-                typeId: from.query.typeId
-            }
-        });
-    }
-    // const cmtokenid = getCookie('cmtokenid');
-    // 如果cookie中没有就从userAgent中去
-    const agentStr = navigator.userAgent || '';
-    let accessSource;
-    if (agentStr.toLowerCase().indexOf('leadeon') > -1) {
-        accessSource = '01';
-    } else if (agentStr.toLowerCase().indexOf('jsmcc') > -1) {
-        accessSource = '02';
-    } else {
-        accessSource = '00';
-    }
-    if (agentStr.indexOf('leadeon') == -1) {
-        setGeneralPropsApp();
-    }
-    let temp = [];
-    let cmtokenid = '';
-    // 异网用户判断
-    let YWLoginCookie = '';
-    // let ywcrmtoken = ''
-    if (agentStr.indexOf('cmtokenid') >= 0 && !getCookie('cmtokenid')) {
-        temp = agentStr.split('cmtokenid=');
-        temp = temp[1].split('&');
-        cmtokenid = temp[0];
-    } else if (getCookie('cmtokenid')) {
-        cmtokenid = getCookie('cmtokenid');
-    } else {
-        // 浏览器中返回
-        // if(getCookie('ywcrmtoken')){
-        //   ywcrmtoken = getCookie('ywcrmtoken')
-        // }
-        // YWLoginCookie = "ODNIBcx1Ve0R3kOpFWUtkQ== "
-        // zhangting异网从cookie中取
-        if (getCookie('YWLoginCookie')) {
-            YWLoginCookie = getCookie('YWLoginCookie');
-        }
-    }
-    const localCmtokenid = store2.default.get('localCmtokenid');
-    // 客户端刷新tokenid则更新本地token缓存
-    if (localCmtokenid !== cmtokenid) {
-        store2.default.set('localCmtokenid', cmtokenid);
-        // 切换手机后，重新走login接口
-        store2.default.set('loginSesion', null);
-    }
-    // pagetokenid测试环境测试用，生产换成cmtokenid
-    const pagetokenid = getQueryString('tokenid');
+//     if (from.query.gytype && from.query.parchn) {
+//         if (!to.query.gytype) {
+//             to.query.gytype = from.query.gytype;
+//         }
+//         if (!to.query.parchn) {
+//             to.query.parchn = from.query.parchn;
+//         }
+//     }
+//     if (from.query.dealChn && !to.query.dealChn) {
+//         router.push({
+//             path: to.path,
+//             query: {
+//                 ...to.query,
+//                 dealChn: from.query.dealChn
+//             }
+//         });
+//     }
+//     if (
+//         beforeUrl
+//       && beforeUrl.indexOf('typeId') > -1
+//       && !from.query.typeId
+//       && !to.query.typeId
+//       && isGo
+//     ) {
+//         const reg = beforeUrl.split('?')[1].split('&');
+//         reg.forEach((item) => {
+//             if (item.indexOf('typeId=') > -1) {
+//                 router.push({
+//                     path: to.path,
+//                     query: {
+//                         ...to.query,
+//                         typeId: item.split('=')[1]
+//                     }
+//                 });
+//             }
+//         });
+//     }
+//     if (from.query.typeId && !to.query.typeId && isGo) {
+//         router.push({
+//             path: to.path,
+//             query: {
+//                 ...to.query,
+//                 typeId: from.query.typeId
+//             }
+//         });
+//     }
+//     // const cmtokenid = getCookie('cmtokenid');
+//     // 如果cookie中没有就从userAgent中去
+//     const agentStr = navigator.userAgent || '';
+//     let accessSource;
+//     if (agentStr.toLowerCase().indexOf('leadeon') > -1) {
+//         accessSource = '01';
+//     } else if (agentStr.toLowerCase().indexOf('jsmcc') > -1) {
+//         accessSource = '02';
+//     } else {
+//         accessSource = '00';
+//     }
+//     if (agentStr.indexOf('leadeon') == -1) {
+//         setGeneralPropsApp();
+//     }
+//     let temp = [];
+//     let cmtokenid = '';
+//     // 异网用户判断
+//     let YWLoginCookie = '';
+//     // let ywcrmtoken = ''
+//     if (agentStr.indexOf('cmtokenid') >= 0 && !getCookie('cmtokenid')) {
+//         temp = agentStr.split('cmtokenid=');
+//         temp = temp[1].split('&');
+//         cmtokenid = temp[0];
+//     } else if (getCookie('cmtokenid')) {
+//         cmtokenid = getCookie('cmtokenid');
+//     } else {
+//         // 浏览器中返回
+//         // if(getCookie('ywcrmtoken')){
+//         //   ywcrmtoken = getCookie('ywcrmtoken')
+//         // }
+//         // YWLoginCookie = "ODNIBcx1Ve0R3kOpFWUtkQ== "
+//         // zhangting异网从cookie中取
+//         if (getCookie('YWLoginCookie')) {
+//             YWLoginCookie = getCookie('YWLoginCookie');
+//         }
+//     }
+//     const localCmtokenid = store2.default.get('localCmtokenid');
+//     // 客户端刷新tokenid则更新本地token缓存
+//     if (localCmtokenid !== cmtokenid) {
+//         store2.default.set('localCmtokenid', cmtokenid);
+//         // 切换手机后，重新走login接口
+//         store2.default.set('loginSesion', null);
+//     }
+//     // pagetokenid测试环境测试用，生产换成cmtokenid
+//     const pagetokenid = getQueryString('tokenid');
 
-    if (to.meta.bgcolor) {
-        window.document.body.className = to.meta.bgcolor;
-    } else {
-        window.document.body.className = '';
-    }
+//     if (to.meta.bgcolor) {
+//         window.document.body.className = to.meta.bgcolor;
+//     } else {
+//         window.document.body.className = '';
+//     }
 
-    // 根据pagetokenid和cmtokenid选取单点登录token,优先选择cmtokenid
-    let loginToken;
-    if (cmtokenid != null && cmtokenid !== '') {
-        loginToken = cmtokenid;
-        store2.default.set('localCmtokenid', cmtokenid);
-        console.log('cmtokenid----', cmtokenid);
-    } else if (pagetokenid != null && pagetokenid !== '') {
-        loginToken = pagetokenid;
-        console.log('pagetokenid----', pagetokenid);
-    }
-    console.log('loginToken----', loginToken);
+//     // 根据pagetokenid和cmtokenid选取单点登录token,优先选择cmtokenid
+//     let loginToken;
+//     if (cmtokenid != null && cmtokenid !== '') {
+//         loginToken = cmtokenid;
+//         store2.default.set('localCmtokenid', cmtokenid);
+//         console.log('cmtokenid----', cmtokenid);
+//     } else if (pagetokenid != null && pagetokenid !== '') {
+//         loginToken = pagetokenid;
+//         console.log('pagetokenid----', pagetokenid);
+//     }
+//     console.log('loginToken----', loginToken);
 
-    let token = store2.default.get('loginSesion');
-    console.log('token----', token);
+//     let token = store2.default.get('loginSesion');
+//     console.log('token----', token);
 
-    // 跳转开户页前先进入授权页
-    if (
-        to.name === 'walletAccount'
-      && from.name !== 'walletOpenAccValiCode'
-      && from.name !== 'walletAccount'
-      && from.name !== 'khEmpower'
-      && from.name !== 'comprehensive'
-      && from.name !== 'walletOpenAccResult'
-      && to.query.pageFrom !== 'khEmpower'
-    ) {
-        router.push({
-            name: 'khEmpower',
-            query: {
-                ...to.query
-            }
-        });
-    }
-    store2.default.set('saveEnter', loginToken);
-    let uAddLogin;
-    if (to.name == 'uAdd') {
-        uAddLogin = to.query.token || '';
-    }
-    if (to.meta.requiresAuth) {
-        let leadeonToken = '';
-        if (agentStr.indexOf('leadeon') >= 0 && !isuAddFlag) {
-            // 大网认证
-            // 一级手厅中国移动提供
-            // 第一步，从URL读取token
-            leadeonToken = decodeURIComponent(getQueryVariable('token')) || '';
-            if (!(!leadeonToken || leadeonToken == 'false')) {
-                // 如果有值，则调用后台接口，后台接口调用移动认证uniTokenvalidate接口获取手机号并实现单点登录
-                return;
-            }
+//     // 跳转开户页前先进入授权页
+//     if (
+//         to.name === 'walletAccount'
+//       && from.name !== 'walletOpenAccValiCode'
+//       && from.name !== 'walletAccount'
+//       && from.name !== 'khEmpower'
+//       && from.name !== 'comprehensive'
+//       && from.name !== 'walletOpenAccResult'
+//       && to.query.pageFrom !== 'khEmpower'
+//     ) {
+//         router.push({
+//             name: 'khEmpower',
+//             query: {
+//                 ...to.query
+//             }
+//         });
+//     }
+//     store2.default.set('saveEnter', loginToken);
+//     let uAddLogin;
+//     if (to.name == 'uAdd') {
+//         uAddLogin = to.query.token || '';
+//     }
+//     if (to.meta.requiresAuth) {
+//         let leadeonToken = '';
+//         if (agentStr.indexOf('leadeon') >= 0 && !isuAddFlag) {
+//             // 大网认证
+//             // 一级手厅中国移动提供
+//             // 第一步，从URL读取token
+//             leadeonToken = decodeURIComponent(getQueryVariable('token')) || '';
+//             if (!(!leadeonToken || leadeonToken == 'false')) {
+//                 // 如果有值，则调用后台接口，后台接口调用移动认证uniTokenvalidate接口获取手机号并实现单点登录
+//                 return;
+//             }
 
-            // 第二步 判断是否是掌厅端内。
-            const ua = navigator.userAgent.toLowerCase();
-            const sourceIdVal = '039014';
-            const pageUrlB = encodeURIComponent(
-                delectQueryString(window.location.href, 'tokenid')
-            );
-            if (ua.match(/leadeon/i) == 'leadeon') {
-                // 在手机营业厅的webview内
-                leadeon.userStatus({
-                    success(res) {
-                        const { status } = res; // 本网登录状态：0未登录；1服务密码登录；2短信验证码登录
-                        if (status == 1 || status == 2) {
-                            // 会话校验
-                            leadeon.checkSessionIsvalid({
-                                success(res1) {
-                                    const status1 = res1.status; // 字符串类型，状态：0 校验失败；1 校验成功。
-                                    if (status1 == 1) {
-                                        // 获取客户端用户信息
-                                        leadeon.getUserInfo({
-                                            success(res2) {
-                                                const { version } = res2; // 客户端版本号
+//             // 第二步 判断是否是掌厅端内。
+//             const ua = navigator.userAgent.toLowerCase();
+//             const sourceIdVal = '039014';
+//             const pageUrlB = encodeURIComponent(
+//                 delectQueryString(window.location.href, 'tokenid')
+//             );
+//             if (ua.match(/leadeon/i) == 'leadeon') {
+//                 // 在手机营业厅的webview内
+//                 leadeon.userStatus({
+//                     success(res) {
+//                         const { status } = res; // 本网登录状态：0未登录；1服务密码登录；2短信验证码登录
+//                         if (status == 1 || status == 2) {
+//                             // 会话校验
+//                             leadeon.checkSessionIsvalid({
+//                                 success(res1) {
+//                                     const status1 = res1.status; // 字符串类型，状态：0 校验失败；1 校验成功。
+//                                     if (status1 == 1) {
+//                                         // 获取客户端用户信息
+//                                         leadeon.getUserInfo({
+//                                             success(res2) {
+//                                                 const { version } = res2; // 客户端版本号
 
-                                                gdp('setUserId', res2.phoneNumber);
-                                                gdp('setGeneralProps', {
-                                                    WT_cid: res2.cid || '',
-                                                    WT_clientID: res2.clientID || '',
-                                                    WT_prov: res2.province || '', // 用户登陆省份和定位省份取最新值，例如：311
-                                                    WT_city: res2.city || '', // 用户登陆地市和定位地市取最新值，例如：0310
-                                                    WT_userBrand: res2.userBrand || '', // 用户的品牌，01、全球通 02、神州行 03、动感地带 09、其他品牌
-                                                    WT_loginProvince: res2.loginProvince || '', // 登录号码归属地省编码，例如：311
-                                                    WT_loginCity: res2.loginCity || ''// 登录号码归属地市编码，例如：0310
-                                                });
-                                                if (versionJudgment(version)) {
-                                                    // 走大网认证（移动认证）单点流程，通过js方法主动请求token
-                                                    leadeon.getYDRZToken({
-                                                        debug: false,
-                                                        sourceId: sourceIdVal, // 目标业务平台sourceId
-                                                        success(res3) {
-                                                            // 是否有凭证
-                                                            if (res3.token) {
-                                                                // 如果有值，则调用后台接口，后台接口调用移动认证uniTokenvalidate接口获取手机号并实现单点登录
-                                                                leadeonToken = res3.token;
-                                                                // 大网拿到token，走内部单点登录接口
-                                                                api.banksApi
-                                                                    .queryToken({
-                                                                        tokenId: leadeonToken,
-                                                                        userFlag: '3' // 一级手厅用户
-                                                                    })
-                                                                    .then((data) => {
-                                                                        // 分销码统计
-                                                                        // setDistributionCode(to);
-                                                                        // if( pagedownlineStatus == 0) {
-                                                                        //   // 页面未下线
-                                                                        //   checkTestPage(to);
-                                                                        // }
-                                                                        next();
-                                                                        store2.default.set('loginSesion', data.body.sessionId);
-                                                                        store2.default.set('loginTokenId', leadeonToken);
-                                                                        if (data.body.loginName) {
-                                                                            store2.default.set(
-                                                                                'usrmob',
-                                                                                data.body.loginName.split('-')[1]
-                                                                            );
-                                                                            setCookieNotTimeOut(
-                                                                                'userMobileForBigData',
-                                                                                data.body.loginName.split('-')[1]
-                                                                            );
-                                                                        }
-                                                                    })
-                                                                    .catch((res) => {
-                                                                        if (res && res.msgInfo) {
-                                                                            this.$toast.info(res.msgInfo);
-                                                                        }
+//                                                 gdp('setUserId', res2.phoneNumber);
+//                                                 gdp('setGeneralProps', {
+//                                                     WT_cid: res2.cid || '',
+//                                                     WT_clientID: res2.clientID || '',
+//                                                     WT_prov: res2.province || '', // 用户登陆省份和定位省份取最新值，例如：311
+//                                                     WT_city: res2.city || '', // 用户登陆地市和定位地市取最新值，例如：0310
+//                                                     WT_userBrand: res2.userBrand || '', // 用户的品牌，01、全球通 02、神州行 03、动感地带 09、其他品牌
+//                                                     WT_loginProvince: res2.loginProvince || '', // 登录号码归属地省编码，例如：311
+//                                                     WT_loginCity: res2.loginCity || ''// 登录号码归属地市编码，例如：0310
+//                                                 });
+//                                                 if (versionJudgment(version)) {
+//                                                     // 走大网认证（移动认证）单点流程，通过js方法主动请求token
+//                                                     leadeon.getYDRZToken({
+//                                                         debug: false,
+//                                                         sourceId: sourceIdVal, // 目标业务平台sourceId
+//                                                         success(res3) {
+//                                                             // 是否有凭证
+//                                                             if (res3.token) {
+//                                                                 // 如果有值，则调用后台接口，后台接口调用移动认证uniTokenvalidate接口获取手机号并实现单点登录
+//                                                                 leadeonToken = res3.token;
+//                                                                 // 大网拿到token，走内部单点登录接口
+//                                                                 api.banksApi
+//                                                                     .queryToken({
+//                                                                         tokenId: leadeonToken,
+//                                                                         userFlag: '3' // 一级手厅用户
+//                                                                     })
+//                                                                     .then((data) => {
+//                                                                         // 分销码统计
+//                                                                         // setDistributionCode(to);
+//                                                                         // if( pagedownlineStatus == 0) {
+//                                                                         //   // 页面未下线
+//                                                                         //   checkTestPage(to);
+//                                                                         // }
+//                                                                         next();
+//                                                                         store2.default.set('loginSesion', data.body.sessionId);
+//                                                                         store2.default.set('loginTokenId', leadeonToken);
+//                                                                         if (data.body.loginName) {
+//                                                                             store2.default.set(
+//                                                                                 'usrmob',
+//                                                                                 data.body.loginName.split('-')[1]
+//                                                                             );
+//                                                                             setCookieNotTimeOut(
+//                                                                                 'userMobileForBigData',
+//                                                                                 data.body.loginName.split('-')[1]
+//                                                                             );
+//                                                                         }
+//                                                                     })
+//                                                                     .catch((res) => {
+//                                                                         if (res && res.msgInfo) {
+//                                                                             this.$toast.info(res.msgInfo);
+//                                                                         }
 
-                                                                        // 重新刷新进页面
-                                                                        window.location.reload();
-                                                                    });
-                                                            } else {
-                                                                window.location.replace = `https://portal.cmpassport.com/sso-aggregator/index.html?channelID=12006&fromPlatformID=1&sourceID=${sourceIdVal}&backUrl=${pageUrlB}`;
-                                                            }
-                                                        },
-                                                        error(res) {
+//                                                                         // 重新刷新进页面
+//                                                                         window.location.reload();
+//                                                                     });
+//                                                             } else {
+//                                                                 window.location.replace = `https://portal.cmpassport.com/sso-aggregator/index.html?channelID=12006&fromPlatformID=1&sourceID=${sourceIdVal}&backUrl=${pageUrlB}`;
+//                                                             }
+//                                                         },
+//                                                         error(res) {
 
-                                                        }
-                                                    });
-                                                } else {
-                                                    window.location.replace = `https://portal.cmpassport.com/sso-aggregator/index.html?channelID=12006&fromPlatformID=1&sourceID=${sourceIdVal}&backUrl=${pageUrlB}`;
-                                                }
-                                            },
-                                            error(res2) { }
-                                        });
-                                    } else {
-                                        leadeon.overTime();// 会话失效，拉起登录
-                                    }
-                                },
-                                error(res1) { }
-                            });
-                        } else {
-                            leadeon.showLogin();// 非登录状态拉起登录
-                        }
-                    },
-                    error(res) { }
-                });
-            } else {
-                window.location.replace = `https://portal.cmpassport.com/sso-aggregator/index.html?channelID=12006&fromPlatformID=1&sourceID=${sourceIdVal}&backUrl=${pageUrlB}`;
-            }
-        } else {
-            if (token != null && token !== '') {
-                // 分销码统计
-                // setDistributionCode(to);
-                // if( pagedownlineStatus == 0) {
-                //   // 页面未下线
-                //   checkTestPage(to);
-                // }
-                next();
-                return;
-            }
-            // 优+登录token为空转跳登录页
-            if (to.name === 'uAdd' && uAddLogin !== '') {
-                api.banksApi
-                    .queryToken({
-                        token: uAddLogin,
-                        userFlag: '2' // jsyd用户
-                    })
-                    .then((data) => {
-                        token = data.body.sessionId;
-                        store2.default.set('loginSesion', token);
-                        store2.default.set('saveEnter', loginToken);
-                        // store2.default.set('saveEnter', null);
-                        store2.default.set('loginTokenId', loginToken);
-                        if (data.body.loginName) {
-                            store2.default.set(
-                                'usrmob',
-                                data.body.loginName.split('-')[1]
-                            );
-                            setCookieNotTimeOut(
-                                'userMobileForBigData',
-                                data.body.loginName.split('-')[1]
-                            );
-                        }
-                        // 分销码统计
-                        // setDistributionCode(to);
-                        // if( pagedownlineStatus == 0) {
-                        //   // 页面未下线
-                        //   checkTestPage(to);
-                        // }
-                        next();
-                    })
-                    .catch(() => {
-                        store2.default.remove('saveEnter');
-                        router.replace({
-                            name: 'login',
-                            query: { redirect: to.fullPath }
-                        });
-                        delCookie('userMobileForBigData');
-                        // delCookie('cmtokenid');
-                        // window.location.replace(delectQueryString(window.location.href, 'tokenid'));
-                    });
-                return;
-            }
-            // 有登录token时候走的内部单点登录接口
-            api.banksApi
-                .queryToken({
-                    tokenId: loginToken,
-                    userFlag: '0' // jsyd用户
-                })
-                .then((data) => {
-                    token = data.body.sessionId;
-                    store2.default.set('loginSesion', token);
-                    store2.default.set('saveEnter', loginToken);
-                    // store2.default.set('saveEnter', null);
-                    store2.default.set('loginTokenId', loginToken);
-                    if (data.body.loginName) {
-                        store2.default.set(
-                            'usrmob',
-                            data.body.loginName.split('-')[1]
-                        );
-                        setCookieNotTimeOut(
-                            'userMobileForBigData',
-                            data.body.loginName.split('-')[1]
-                        );
-                    }
-                    // 分销码统计
-                    // setDistributionCode(to);
-                    // if( pagedownlineStatus == 0) {
-                    //   // 页面未下线
-                    //   checkTestPage(to);
-                    // }
-                    next();
-                })
-                .catch(() => {
-                    store2.default.remove('saveEnter');
-                    store2.default.set('loginSesion', null);
-                    // router.replace({
-                    //     name: "login",
-                    //     query: { redirect: to.fullPath },
-                    // });
-                    if (Vue.client.JSMCC) {
-                        // 安卓端
-                        if (Vue.client.ANDROID) {
-                            window.buy.getOneKeyToken();
-                            window.buy.buyImmediately();
-                        } else if (Vue.client.IOS) {
-                            // IOS端
-                            iosGetToken();
-                            window.location.href = 'phonestore://jumpToLogin';
-                        }
-                    } else {
-                        const pageUrl = encodeURIComponent(
-                            delectQueryString(window.location.href, 'tokenid')
-                        );
-                        const url = `https://wap.js.10086.cn/vw/JRGY/DLTZ?autoauth=jtauth&redirectURL=${pageUrl}`;
-                        console.log('url---99', url);
-                        window.location.assign(url);
-                    }
-                    delCookie('userMobileForBigData');
-                });
-        }
-    } else {
-        next();
-    }
-});
+//                                                         }
+//                                                     });
+//                                                 } else {
+//                                                     window.location.replace = `https://portal.cmpassport.com/sso-aggregator/index.html?channelID=12006&fromPlatformID=1&sourceID=${sourceIdVal}&backUrl=${pageUrlB}`;
+//                                                 }
+//                                             },
+//                                             error(res2) { }
+//                                         });
+//                                     } else {
+//                                         leadeon.overTime();// 会话失效，拉起登录
+//                                     }
+//                                 },
+//                                 error(res1) { }
+//                             });
+//                         } else {
+//                             leadeon.showLogin();// 非登录状态拉起登录
+//                         }
+//                     },
+//                     error(res) { }
+//                 });
+//             } else {
+//                 window.location.replace = `https://portal.cmpassport.com/sso-aggregator/index.html?channelID=12006&fromPlatformID=1&sourceID=${sourceIdVal}&backUrl=${pageUrlB}`;
+//             }
+//         } else {
+//             if (token != null && token !== '') {
+//                 // 分销码统计
+//                 // setDistributionCode(to);
+//                 // if( pagedownlineStatus == 0) {
+//                 //   // 页面未下线
+//                 //   checkTestPage(to);
+//                 // }
+//                 next();
+//                 return;
+//             }
+//             // 优+登录token为空转跳登录页
+//             if (to.name === 'uAdd' && uAddLogin !== '') {
+//                 api.banksApi
+//                     .queryToken({
+//                         token: uAddLogin,
+//                         userFlag: '2' // jsyd用户
+//                     })
+//                     .then((data) => {
+//                         token = data.body.sessionId;
+//                         store2.default.set('loginSesion', token);
+//                         store2.default.set('saveEnter', loginToken);
+//                         // store2.default.set('saveEnter', null);
+//                         store2.default.set('loginTokenId', loginToken);
+//                         if (data.body.loginName) {
+//                             store2.default.set(
+//                                 'usrmob',
+//                                 data.body.loginName.split('-')[1]
+//                             );
+//                             setCookieNotTimeOut(
+//                                 'userMobileForBigData',
+//                                 data.body.loginName.split('-')[1]
+//                             );
+//                         }
+//                         // 分销码统计
+//                         // setDistributionCode(to);
+//                         // if( pagedownlineStatus == 0) {
+//                         //   // 页面未下线
+//                         //   checkTestPage(to);
+//                         // }
+//                         next();
+//                     })
+//                     .catch(() => {
+//                         store2.default.remove('saveEnter');
+//                         router.replace({
+//                             name: 'login',
+//                             query: { redirect: to.fullPath }
+//                         });
+//                         delCookie('userMobileForBigData');
+//                         // delCookie('cmtokenid');
+//                         // window.location.replace(delectQueryString(window.location.href, 'tokenid'));
+//                     });
+//                 return;
+//             }
+//             // 有登录token时候走的内部单点登录接口
+//             api.banksApi
+//                 .queryToken({
+//                     tokenId: loginToken,
+//                     userFlag: '0' // jsyd用户
+//                 })
+//                 .then((data) => {
+//                     token = data.body.sessionId;
+//                     store2.default.set('loginSesion', token);
+//                     store2.default.set('saveEnter', loginToken);
+//                     // store2.default.set('saveEnter', null);
+//                     store2.default.set('loginTokenId', loginToken);
+//                     if (data.body.loginName) {
+//                         store2.default.set(
+//                             'usrmob',
+//                             data.body.loginName.split('-')[1]
+//                         );
+//                         setCookieNotTimeOut(
+//                             'userMobileForBigData',
+//                             data.body.loginName.split('-')[1]
+//                         );
+//                     }
+//                     // 分销码统计
+//                     // setDistributionCode(to);
+//                     // if( pagedownlineStatus == 0) {
+//                     //   // 页面未下线
+//                     //   checkTestPage(to);
+//                     // }
+//                     next();
+//                 })
+//                 .catch(() => {
+//                     store2.default.remove('saveEnter');
+//                     store2.default.set('loginSesion', null);
+//                     // router.replace({
+//                     //     name: "login",
+//                     //     query: { redirect: to.fullPath },
+//                     // });
+//                     if (Vue.client.JSMCC) {
+//                         // 安卓端
+//                         if (Vue.client.ANDROID) {
+//                             window.buy.getOneKeyToken();
+//                             window.buy.buyImmediately();
+//                         } else if (Vue.client.IOS) {
+//                             // IOS端
+//                             iosGetToken();
+//                             window.location.href = 'phonestore://jumpToLogin';
+//                         }
+//                     } else {
+//                         const pageUrl = encodeURIComponent(
+//                             delectQueryString(window.location.href, 'tokenid')
+//                         );
+//                         const url = `https://wap.js.10086.cn/vw/JRGY/DLTZ?autoauth=jtauth&redirectURL=${pageUrl}`;
+//                         console.log('url---99', url);
+//                         window.location.assign(url);
+//                     }
+//                     delCookie('userMobileForBigData');
+//                 });
+//         }
+//     } else {
+//         next();
+//     }
+// });
+router.beforeEach((to, from, next) => {
+    next();
+})
 
 export default router;
